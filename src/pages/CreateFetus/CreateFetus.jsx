@@ -36,20 +36,10 @@ const CreateFetus = () => {
 
         setIsSubmitting(true); // Bắt đầu gửi request
         try {
-            // // const response = await axios.post(`/api/users/${userId}fetuses`, fetusData, {
-            // //     headers: {
-            // //         Authorization: `Bearer ${token}`
-            // //     }
-            // // });
-            // const responseData = await axios.post(`https://maternitycare.azurewebsites.net/api/users/${userId}/fetuses`, fetusData,{
-            //     headers: {
-            //         Authorization: `Bearer ${token}`
-            //     }
-            // }
-            // )
-            const response = api.post(`users/${userId}/fetuses`,fetusData);
+            const response = await api.post(`users/${userId}/fetuses`,fetusData);
             console.log('Form submitted:', response);
             toast.success("Thông tin thai kỳ đã được lưu thành công!");
+            localStorage.setItem('fetusId', response.data.id);
             navigate('/create-fetus-health');
         } catch (error) {
             console.error("Lỗi khi gửi request:", error);

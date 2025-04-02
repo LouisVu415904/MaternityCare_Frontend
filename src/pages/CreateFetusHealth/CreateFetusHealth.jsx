@@ -30,7 +30,6 @@ const CreateFetusHealth = () => {
                     `https://maternitycare.azurewebsites.net/api/users/${userId}/fetuses`,
                     { headers: { Authorization: `Bearer ${token}` } }
                 );
-
                 if (response.data.length > 0) {
                     const firstFetusId = response.data[0].id;
                     console.log(response);
@@ -40,11 +39,8 @@ const CreateFetusHealth = () => {
             } catch (error) {
                 console.error("Lỗi khi lấy thông tin:", error);
             }   
-            
         };
-
         fetchFetusData();
-        
     }, [userId, token]);
 
     const sanitizeHealthData = (data) => {

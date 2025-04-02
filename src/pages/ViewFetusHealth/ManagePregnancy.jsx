@@ -13,7 +13,6 @@ const ManagePregnancy = () => {
     const [fetusHealthData, setFetusHealthData] = useState([]);
     const [selectedFetus, setSelectedFetus] = useState(null);
     const [viewOpen, setViewOpen] = useState(false);
-    const [editOpen, setEditOpen] = useState(false);
     const [isAdding, setIsAdding] = useState(false);
 
     // Hàm gọi API lấy dữ liệu sức khỏe thai nhi
@@ -44,6 +43,9 @@ const ManagePregnancy = () => {
     const handleAddWeek = () => {
         setIsAdding(true);
         message.info("Bắt đầu thêm tuần thai mới");
+        setSelectedFetus({ 
+            fetusId,
+        });
     };
 
     const columns = [
@@ -105,22 +107,20 @@ const ManagePregnancy = () => {
 
             {/* Modal Thêm/Sửa tuần thai */}
             <Modal
-                title={selectedFetus ? "Chỉnh sửa tuần thai" : "Thêm tuần thai"}
-                open={editOpen || isAdding}
-                onCancel={() => { setEditOpen(false); setIsAdding(false); }}
+                title="Thêm tuần thai"
+                open={isAdding}
+                onCancel={() => { setIsAdding(false); }}
                 footer={null}
-                
             >
                 <CreateFetusHealth
                     fetusHealthData={selectedFetus}
                     onSuccess={() => {
                         fetchData();
-                        setEditOpen(false);
                         setIsAdding(false);
                         message.success("Thông tin thai nhi đã được lưu thành công!");
                     }}
                 />
-            </Modal>
+</Modal>
         </Layout>
     );
 };
