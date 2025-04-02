@@ -27,7 +27,7 @@ const ViewSlot = () => {
 
       try {
         const response = await api.get(
-          `https://maternitycare.azurewebsites.net/api/doctors?PageNumber=${pageNumber}&PageSize=${pageSize}`,
+          `https://maternitycare.azurewebsites.net/api/doctors/active-doctors?PageNumber=${pageNumber}&PageSize=${pageSize}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
